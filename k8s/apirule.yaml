@@ -1,0 +1,18 @@
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  name: abap-mock-in-go
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  rules:
+    - path: /orderhistory|/orderhistorybybpid/.*
+      accessStrategies:
+        - handler: oauth2_introspection
+          config:
+            required_scope: ["orderhistaccessscope"]
+      methods:
+        - GET
+  service:
+    host: abap-mock-in-go
+    name: abap-mock-in-go
+    port: 80
