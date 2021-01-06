@@ -5,7 +5,7 @@ metadata:
 spec:
   gateway: kyma-gateway.kyma-system.svc.cluster.local
   rules:
-    - path: /orderhistory|/orderhistorybybpid/.*
+    - path: /orderhistory
       accessStrategies:
         - handler: oauth2_introspection
           config:

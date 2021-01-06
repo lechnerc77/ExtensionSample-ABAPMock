@@ -15,7 +15,7 @@ spec:
         app: abap-mock-in-go
     spec:
       containers:
-        - image: lechnerc77/abap-mock-in-go:0.0.1
+        - image: lechnerc77/abap-mock-in-go:0.0.2
           imagePullPolicy: Always
           name: abap-mock-in-go
           ports:

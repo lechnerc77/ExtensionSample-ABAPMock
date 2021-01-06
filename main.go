@@ -27,32 +27,32 @@ func returnAllOrderHistoryItems(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(OrderHistoryItems)
-}
 
-func returnOrderHistoryByBpId(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Endpoint Hit: orderhistorybybpid")
-	vars := mux.Vars(r)
-	searchid := vars["bpid"]
+	urlParameter := r.URL.Query().Get("bpid")
 
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	if urlParameter != "" {
 
-	var foundOrderHistoryItems []OrderHistory
+		var foundOrderHistoryItems []OrderHistory
 
-	for _, orderhistoryitem := range OrderHistoryItems {
-		if orderhistoryitem.BusinessPartnerId == searchid {
-			foundOrderHistoryItems = append(foundOrderHistoryItems, orderhistoryitem)
+		for _, orderhistoryitem := range OrderHistoryItems {
+			if orderhistoryitem.BusinessPartnerId == urlParameter {
+				foundOrderHistoryItems = append(foundOrderHistoryItems, orderhistoryitem)
+			}
 		}
+
+		json.NewEncoder(w).Encode(foundOrderHistoryItems)
+
+	} else {
+
+		json.NewEncoder(w).Encode(OrderHistoryItems)
+
 	}
 
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(foundOrderHistoryItems)
 }
 
 func handleRequests() {
 	myRouter := mux.NewRouter().StrictSlash(true)
-	myRouter.HandleFunc("/orderhistory", returnAllOrderHistoryItems)
-	myRouter.HandleFunc("/orderhistorybybpid/{bpid}", returnOrderHistoryByBpId)
+	myRouter.HandleFunc("/orderhistory", returnAllOrderHistoryItems).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", myRouter))
 }
 

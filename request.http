@@ -1,9 +1,6 @@
 @baseUrlKyma = https://<PUT_YOUT_URL_HERE>.kyma.shoot.live.k8s-hana.ondemand.com
 @oAuthUrlKyma = https://oauth2.<PUT_YOUT_URL_HERE>.kyma.shoot.live.k8s-hana.ondemand.com/oauth2/token
 
-### GET on Kyma - node, path = /free
-GET {{baseUrlKyma}}/free
-
 ### GET on Kyma - node, path = /prot => error due to missing authentication
 GET {{baseUrlKyma}}/orderhistory
 
@@ -22,9 +19,9 @@ GET {{baseUrlKyma}}/orderhistory
 Authorization: Bearer {{auth.response.body.access_token}}
 
 ### Call the secured endpoint with valid values
-GET {{baseUrlKyma}}/orderhistorybybpid/1245783695
+GET {{baseUrlKyma}}/orderhistory?bpid=1245783695
 Authorization: Bearer {{auth.response.body.access_token}}
 
 ### Call the secured endpoint with invalif values
-GET {{baseUrlKyma}}/orderhistorybybpid/1245783690
+GET {{baseUrlKyma}}/orderhistory?bpid=1245783690
 Authorization: Bearer {{auth.response.body.access_token}}
