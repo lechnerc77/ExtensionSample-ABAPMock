@@ -1,6 +1,6 @@
 RELEASE=0.0.2
 APP=abap-mock-in-go
-DOCKER_ACCOUNT=lechnerc77
+DOCKER_ACCOUNT=<Your Dokcer ID>
 CONTAINER_IMAGE=${DOCKER_ACCOUNT}/${APP}:${RELEASE}
 
 .PHONY: build-image push-image
