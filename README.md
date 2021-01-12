@@ -1,6 +1,6 @@
 # Mock up for Service Call of Order History
 
-![Overview](./pics/Overview_ABAP.png)
+![Overview](./pics/Overview_ABAP_WhiteBG.png)
 
 This repository contains the source code for the mock of the ABAP backend in Go. It includes all files relevant for building the docker image and deploying the application to Kyma.
 
